@@ -101,11 +101,11 @@ h3 {
 }
 p {
 	letter-spacing: 0.13em;
-	padding: 3px;
-	width: 231px;
+	padding: .19em;
+	width: 14em;
 	text-align: center;
 	margin: 0 auto 10px;
-	background: rgb(186, 143, 87);
+	background: rgb(121, 121, 121);
 	border-radius: 6px;
 	color: #FFF;
 }
@@ -117,13 +117,15 @@ h3 {
 	height: 2.5em;
 }
 button {
-	font-size: 1em;
-	border:none;
+	border: 1px solid rgb(255, 255, 255);
+	color: rgb(216, 216, 216);
+	font-size: 0.9em;
 	display:block;
-	background: darkorange;
+	background: rgb(0, 0, 0);
 }
 
 button.reset{
+	border: none;
 	font-family: 'Gloria Hallelujah', sans-serif;
 	text-shadow: 1px -1px 0px rgb(205, 11, 11);
 	font-size: 1.7em;
@@ -134,7 +136,7 @@ button.reset{
 	left: 6em;
 }
 #answered {
-	display: block;
+	display: none;
 }
 #answered > h2 {
 margin-top: 3.5em;
@@ -143,5 +145,5 @@ font-size:3em
 margin-bottom: 0.1em;
 }
 #question {
-    display: none;
+    display: block;
 }
