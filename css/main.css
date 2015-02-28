@@ -134,7 +134,7 @@ button.reset{
 	left: 6em;
 }
 #answered {
-	display: block;
+	display: none;
 }
 #answered > h2 {
 margin-top: 3.5em;
@@ -143,5 +143,5 @@ font-size:3em
 margin-bottom: 0.1em;
 }
 #question {
-    display: none;
+    display: block;
 }
