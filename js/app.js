@@ -40,7 +40,7 @@ $(document).ready(function(){
 		//	console.log("Works");
 		//}
 		console.log($(questionList[questionNumber].EL).index());
-		//Hide question
+		//Hide current question
 		$(questionList[questionNumber-1].EL).hide();
 		
 	});
