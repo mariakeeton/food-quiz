@@ -11,10 +11,12 @@ $(document).ready(function(){
 	new Question('The first soup contained the meat of what animal:','Hippopotamus', 'Tiger', 'Chicken', 'Boar', 1),
 	new Question('The most expensive coffee, Kopi Luwak, is made from the beans of coffee berries eaten by what animal:', 'Asian Elephant','Prarie Dog','Koala','Asian Palm Civet',4),
 	new Question('Which fruit contains water that could be used as a substitute for blood plasma?', 'Apple','Coconut', 'Lemon', 'Watermelon', 2)]
+
 	//Create variable that contains number of quiz questions, and another variable that stores question number;
 	var questionCount = questionList.length;
 	var questionNumber = 1;
 	var score = 0;
+	var selectedChoice;
 
 	//Add question count, and question number (position in questionList Array) to HTML Document
 	$('.question-count').text(questionCount);
@@ -24,22 +26,33 @@ $(document).ready(function(){
 	var correctAns = questionList[0].correctChoice;
 	
 	$('#question').append('<button class="submit">Submit</button>');
+	//Answer Choices
+	$('p').click(function(){
+		$(this).toggleClass('selected');
+		$(this).siblings().removeClass();
+		
+	
+		selectedChoice = $(this).index();
+		console.log('Index of Selection: '+ $(this).index());
+		console.log('Index of p.selected: '+ selectedChoice);
+	});
 	
 	//When the submit button is pressed, hide the question, and how if answer was correct or incorrect
 	$('.submit').click(function() {
 		$('#question').hide();
 		$('#answered').show();
-		if($('p.selected').index()==correctAns){
+		if(selectedChoice == correctAns){
 			score = score + Math.round((100/questionCount));
 			$('.percent').text(score);
 			$('#answered').children('h2').text('Correct!');
 		}else {
 			$('#answered').children('h2').text('Incorrect :(');
 		}
-		//if($(questionList[questionNumber].EL).index() == questionList.length) {
-		//	console.log("Works");
-		//}
-		console.log($(questionList[questionNumber].EL).index());
+		if(questionNumber == questionList.length) {
+			$('.next-question').remove();
+			$('#answered').append('<h3>Thanks for playing </h3>')
+		}
+		
 		//Hide current question
 		$(questionList[questionNumber-1].EL).hide();
 		
@@ -48,18 +61,13 @@ $(document).ready(function(){
 		questionNumber++;
 		$(questionList[questionNumber-1].EL).show();
 		correctAns = questionList[questionNumber-1].correctChoice;
-		console.log('Correct Ans:'+correctAns+ " "+questionList[questionNumber-1]);
+		console.log('Correct Ans: '+ correctAns);
 		$('#question').show();
 		$('#answered').hide();
 		$('#question-number').text(questionNumber);
 		
 	});
-	//Answer Choices
-	$('p').click(function(){
-		$(this).toggleClass('selected');
-		$(this).siblings().removeClass();
-		console.log($(this).index());
-	});
+
 
 	function Question(questionAsked, ch1, ch2, ch3, ch4, correctAnsNum) {
 		this.choices = [ch1, ch2, ch3, ch4];
