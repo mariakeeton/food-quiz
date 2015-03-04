@@ -1,8 +1,5 @@
 $(document).ready(function(){
 	
-	//Quiz questions
-	
-	
 	//Create an array that contains the quiz questions 
 	var questionList;
 	questionList = [new Question('What was the original purpose of caramel?', 'Depilatory', 'Condiment', 'Glue', 'Pain Reliever', 1),
@@ -24,17 +21,17 @@ $(document).ready(function(){
 	//show the first question in array;
 	$(questionList[0].EL).show();
 	var correctAns = questionList[0].correctChoice;
-	
+	//Add submit button
 	$('#question').append('<button class="submit">Submit</button>');
+	
 	//Answer Choices
 	$('p').click(function(){
 		$(this).toggleClass('selected');
 		$(this).siblings().removeClass();
 		
-	
 		selectedChoice = $(this).index();
-		console.log('Index of Selection: '+ $(this).index());
-		console.log('Index of p.selected: '+ selectedChoice);
+		//console.log('Index of Selection: '+ $(this).index());
+		//console.log('Index of p.selected: '+ selectedChoice);
 	});
 	
 	//When the submit button is pressed, hide the question, and how if answer was correct or incorrect
@@ -49,7 +46,7 @@ $(document).ready(function(){
 			$('#answered').children('h2').text('Incorrect :(');
 		}
 		if(questionNumber == questionList.length) {
-			$('.next-question').remove();
+			$('.next-question').hide();
 			$('#answered').append('<h3>Thanks for playing </h3>')
 		}
 		
@@ -67,7 +64,21 @@ $(document).ready(function(){
 		$('#question-number').text(questionNumber);
 		
 	});
+	$('.reset').click(function() {
+		$(questionList[questionNumber-1].EL).hide();
+		score = 0;
+		questionNumber = 1;
+		correctAns = questionList[questionNumber-1].correctChoice
+		$('#question-number').text(questionNumber);
+		$('.percent').text(score);
+		$(questionList[questionNumber-1].EL).show();
+		$('p').removeClass();
+		$('#question').show();
+		$('#answered').hide();
+		$('#answered h3').hide();
+		$('.next-question').show();
 
+	});
 
 	function Question(questionAsked, ch1, ch2, ch3, ch4, correctAnsNum) {
 		this.choices = [ch1, ch2, ch3, ch4];
